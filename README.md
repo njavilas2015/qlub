@@ -53,6 +53,46 @@ El archivo de configuración JSON debe contener una lista de subdominios. Cada s
 - ssl_cert: (opcional) Ruta al certificado SSL.
 - ssl_cert_key: (opcional) Ruta a la clave del certificado SSL.
 
+
+```json
+[
+    {
+        "name": "gestion.onbbu.ar",
+        "port": "3000",
+        "instances": [
+            "192.168.1.101",
+            "192.168.1.102",
+            "192.168.1.103",
+            "192.168.1.104",
+            "192.168.1.105"
+        ],
+        "https": true,
+        "ssl_cert": "/etc/nginx/ssl/gestion.onbbu.ar.crt",
+        "ssl_cert_key": "/etc/nginx/ssl/gestion.onbbu.ar.key"
+    },
+    {
+        "name": "api.onbbu.ar",
+        "port": "8000",
+        "instances": [
+            "192.168.1.201",
+            "192.168.1.202",
+            "192.168.1.203"
+        ],
+        "https": false
+    },
+    {
+        "name": "onbbu.ar",
+        "port": "3000",
+        "instances": [
+            "192.168.1.301",
+            "192.168.1.302",
+            "192.168.1.303"
+        ],
+        "https": false
+    }
+]
+```
+
 ## Build
 
 go build -o qlub
