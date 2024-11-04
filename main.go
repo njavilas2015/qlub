@@ -14,9 +14,7 @@ func main() {
 		log.Fatalf("Error al cargar la configuración: %v", err)
 	}
 
-	for _, subdomain := range subdomains {
-		if err := config.GenerateNginxConfig(subdomain); err != nil {
-			log.Printf("Error al generar configuración para %s: %v", subdomain.Name, err)
-		}
+	if err := config.GenerateNginxConfig(subdomains); err != nil {
+		log.Fatalf("Error generating config: %v", err)
 	}
 }
