@@ -23,10 +23,10 @@
 
 Para instalar `qlub`, puedes descargar el binario desde el siguiente enlace:
 
-- [Descargar qlub](https://github.com/njavilas2015/qlub/releases/download/v1.0.0/qlub)
+- [Descargar qlub](https://github.com/njavilas2015/qlub/releases/download/v1.0.1/qlub)
 
 ```bash
-wget https://github.com/njavilas2015/qlub/releases/download/v1.0.0/qlub
+wget https://github.com/njavilas2015/qlub/releases/download/v1.0.1/qlub
 ```
 
 Después de descargar, asegúrate de que el binario sea ejecutable y mueve el archivo a un directorio en tu `PATH`:
