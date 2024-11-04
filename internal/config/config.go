@@ -34,13 +34,13 @@ func LoadConfig(filename *string) ([]Subdomain, error) {
 }
 
 func ParseFlags() (*bool, *string) {
-	showVersion := flag.Bool("version", false, "Muestra la versión de qlub")
-	configPath := flag.String("config", "", "Ruta al archivo de configuración JSON")
+	showVersion := flag.Bool("version", false, "Show qlub version")
+	configPath := flag.String("config", "", "Path to JSON configuration file")
 
 	flag.Parse()
 
 	if *configPath == "" {
-		fmt.Println("Por favor proporciona la ruta al archivo de configuración con --config.")
+		fmt.Println("Please provide the path to the configuration file with --config")
 		os.Exit(1)
 	}
 
