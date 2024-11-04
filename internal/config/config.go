@@ -2,6 +2,8 @@ package config
 
 import (
 	"encoding/json"
+	"flag"
+	"fmt"
 	"os"
 )
 
@@ -14,9 +16,9 @@ type Subdomain struct {
 	SSLCertKey string   `json:"ssl_cert_key"`
 }
 
-func LoadConfig(filename string) ([]Subdomain, error) {
+func LoadConfig(filename *string) ([]Subdomain, error) {
 
-	data, err := os.ReadFile(filename)
+	data, err := os.ReadFile(*filename)
 
 	if err != nil {
 		return nil, err
@@ -29,4 +31,23 @@ func LoadConfig(filename string) ([]Subdomain, error) {
 	}
 
 	return subdomains, nil
+}
+
+func ParseFlags() (*bool, *string) {
+	showVersion := flag.Bool("version", false, "Muestra la versión de qlub")
+	configPath := flag.String("config", "", "Ruta al archivo de configuración JSON")
+
+	flag.Parse()
+
+	if *configPath == "" {
+		fmt.Println("Por favor proporciona la ruta al archivo de configuración con --config.")
+		os.Exit(1)
+	}
+
+	return showVersion, configPath
+}
+
+func CheckFileExistence(filename string) bool {
+	_, err := os.Stat(filename)
+	return !os.IsNotExist(err)
 }
