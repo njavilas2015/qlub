@@ -93,6 +93,18 @@ El archivo de configuración JSON debe contener una lista de subdominios. Cada s
 ]
 ```
 
+## Docker Compose 
+Puedes descargar la imagen lista para trabajar `docker pull njavilas/qlub:1.0`
+
+```yml
+services:
+  qlub:
+    image: njavilas/qlub:1.0
+    volumes:
+      - ./subdomains.json:/app/subdomains.json
+      - ./nginx.conf:/app/nginx.conf
+```
+
 ## Build
 
 go build -o qlub
