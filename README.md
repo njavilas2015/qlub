@@ -40,7 +40,8 @@ sudo mv qlub /usr/local/bin/
 Para usar `qlub`, puedes ejecutar el siguiente comando en la terminal:
 
 ```bash
-qlub --config <ruta_al_archivo_json>
+qlub --config <ruta_al_archivo_json> --watch #para detectar cambios y actualizar config
+
 ```
 
 ## Configuración
