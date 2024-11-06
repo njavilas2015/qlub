@@ -48,59 +48,48 @@ qlub --config <ruta_al_archivo_json> --watch #para detectar cambios y actualizar
 El archivo de configuración JSON debe contener una lista de subdominios. Cada subdominio puede tener los siguientes campos:
 
 - name: Nombre del subdominio.
-- port: Puerto donde se ejecutará el servicio.
-- instances: Lista de instancias del servicio.
-- https: (opcional) Si el subdominio debe usar HTTPS.
+- location: Lista de instancias del servicio.
+- ssl: (opcional) Si el subdominio debe usar HTTPS.
 - ssl_cert: (opcional) Ruta al certificado SSL.
 - ssl_cert_key: (opcional) Ruta a la clave del certificado SSL.
 
 
 ```json
 [
-    {
-        "name": "gestion.onbbu.ar",
-        "port": "3000",
-        "instances": [
-            "192.168.1.101",
-            "192.168.1.102",
-            "192.168.1.103",
-            "192.168.1.104",
-            "192.168.1.105"
+   {
+        "name": "domain.com",
+        "location": [
+            {
+                "path": "/",
+                "port": "443",
+                "instances": [
+                    "site_docker_1",
+                    "site_server_2"
+                ]
+            },
+            {
+                "path": "/api",
+                "port": "8000",
+                "instances": [
+                    "api_docker_1",
+                    "api_server_2"
+                ]
+            }
         ],
-        "https": true,
-        "ssl_cert": "/etc/nginx/ssl/gestion.onbbu.ar.crt",
-        "ssl_cert_key": "/etc/nginx/ssl/gestion.onbbu.ar.key"
-    },
-    {
-        "name": "api.onbbu.ar",
-        "port": "8000",
-        "instances": [
-            "192.168.1.201",
-            "192.168.1.202",
-            "192.168.1.203"
-        ],
-        "https": false
-    },
-    {
-        "name": "onbbu.ar",
-        "port": "3000",
-        "instances": [
-            "192.168.1.301",
-            "192.168.1.302",
-            "192.168.1.303"
-        ],
-        "https": false
+        "ssl": true,
+        "ssl_cert": "/etc/letsencrypt/fullchain.pem",
+        "ssl_cert_key": "/etc/letsencrypt/privkey.pem"
     }
 ]
 ```
 
 ## Docker Compose 
-Puedes descargar la imagen lista para trabajar `docker pull njavilas/qlub:1.0`
+Puedes descargar la imagen lista para trabajar `docker pull njavilas/qlub:latest`
 
 ```yml
 services:
   qlub:
-    image: njavilas/qlub:1.0
+    image: njavilas/qlub:latest
     volumes:
       - ./subdomains.json:/app/subdomains.json
       - ./nginx.conf:/app/nginx.conf
