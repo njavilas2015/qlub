@@ -1,1 +1,1 @@
-docker build -t njavilas/qlub:1.0 .
+docker build -t njavilas/qlub:latest .
