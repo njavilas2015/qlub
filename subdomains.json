@@ -1,21 +1,21 @@
 [
     {
-        "name": "vtec.boxergestion.com",
+        "name": "domain.com",
         "location": [
             {
                 "path": "/",
                 "port": "443",
                 "instances": [
-                    "site_boxer_1",
-                    "site_boxer_2"
+                    "site_docker_1",
+                    "site_server_2"
                 ]
             },
             {
                 "path": "/api",
                 "port": "8000",
                 "instances": [
-                    "api_boxer_1",
-                    "api_boxer_2"
+                    "api_docker_1",
+                    "api_server_2"
                 ]
             }
         ],
