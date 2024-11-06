@@ -10,13 +10,18 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
+type Location struct {
+	Path      string   `json:"path"`
+	Port      string   `json:"port"`
+	Instances []string `json:"instances"`
+}
+
 type Subdomain struct {
-	Name       string   `json:"name"`
-	Port       string   `json:"port"`
-	Instances  []string `json:"instances"`
-	HTTPS      bool     `json:"https"`
-	SSLCert    string   `json:"ssl_cert"`
-	SSLCertKey string   `json:"ssl_cert_key"`
+	Name       string     `json:"name"`
+	Location   []Location `json:"location"`
+	Ssl        bool       `json:"ssl"`
+	SslCert    string     `json:"ssl_cert"`
+	SslCertKey string     `json:"ssl_cert_key"`
 }
 
 func LoadConfig(filename *string) ([]Subdomain, error) {
