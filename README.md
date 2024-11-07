@@ -56,11 +56,11 @@ El archivo de configuración JSON debe contener una lista de subdominios. Cada s
 
 ```json
 [
-   {
-        "name": "onbbu.ar",
+    {
+        "domain": "onbbu.ar",
         "location": [
             {
-                "name": "frontend",
+                "alias": "frontend",
                 "ssl": true,
                 "path": "/",
                 "port": "443",
@@ -69,7 +69,7 @@ El archivo de configuración JSON debe contener una lista de subdominios. Cada s
                 ]
             },
             {
-                "name": "backend",
+                "alias": "backend",
                 "ssl": false,
                 "path": "/api",
                 "port": "8000",
@@ -79,8 +79,8 @@ El archivo de configuración JSON debe contener una lista de subdominios. Cada s
             }
         ],
         "ssl": true,
-        "ssl_cert": "/etc/letsencrypt/live/npm-11/fullchain.pem",
-        "ssl_cert_key": "/etc/letsencrypt/live/npm-11/privkey.pem"
+        "ssl_cert": "/etc/letsencrypt/live/npm-42/fullchain.pem",
+        "ssl_cert_key": "/etc/letsencrypt/live/npm-42/privkey.pem"
     }
 ]
 ```
