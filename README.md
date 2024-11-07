@@ -57,39 +57,65 @@ El archivo de configuración JSON debe contener una lista de subdominios. Cada s
 ```json
 [
    {
-        "name": "domain.com",
+        "name": "onbbu.ar",
         "location": [
             {
+                "name": "frontend",
+                "ssl": true,
                 "path": "/",
                 "port": "443",
                 "instances": [
-                    "site_docker_1",
-                    "site_server_2"
+                    "site"
                 ]
             },
             {
+                "name": "backend",
+                "ssl": false,
                 "path": "/api",
                 "port": "8000",
                 "instances": [
-                    "api_docker_1",
-                    "api_server_2"
+                    "qlub"
                 ]
             }
         ],
         "ssl": true,
-        "ssl_cert": "/etc/letsencrypt/fullchain.pem",
-        "ssl_cert_key": "/etc/letsencrypt/privkey.pem"
+        "ssl_cert": "/etc/letsencrypt/live/npm-11/fullchain.pem",
+        "ssl_cert_key": "/etc/letsencrypt/live/npm-11/privkey.pem"
     }
 ]
 ```
 
 ## Docker Compose 
-Puedes descargar la imagen lista para trabajar `docker pull njavilas/qlub:latest`
+Puedes descargar la imagen lista para trabajar `docker pull njavilas/qlub:server`
 
 ```yml
 services:
+  proxy:
+    image: nginx:alpine
+    ports:
+      - 80:80   
+      - 443:443
+      
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /mnt/md0/data/letsencrypt/:/etc/letsencrypt/
+
+    depends_on:
+        - site
+        - qlub
+  
+  site:
+    image: njavilas/qlub:site
+
+    volumes:
+      - /mnt/md0/data/letsencrypt/live/npm-42/fullchain.pem:/etc/letsencrypt/fullchain.pem
+      - /mnt/md0/data/letsencrypt/live/npm-42/privkey.pem:/etc/letsencrypt/privkey.pem
+
+    expose:
+      - 443
+
   qlub:
-    image: njavilas/qlub:latest
+    image: njavilas/qlub:server
     volumes:
       - ./subdomains.json:/app/subdomains.json
       - ./nginx.conf:/app/nginx.conf

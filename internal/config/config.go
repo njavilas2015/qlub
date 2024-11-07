@@ -11,13 +11,15 @@ import (
 )
 
 type Location struct {
+	Alias     string   `json:"alias"`
 	Path      string   `json:"path"`
 	Port      string   `json:"port"`
 	Instances []string `json:"instances"`
+	Ssl       bool     `json:"ssl"`
 }
 
 type Subdomain struct {
-	Name       string     `json:"name"`
+	Domain     string     `json:"domain"`
 	Location   []Location `json:"location"`
 	Ssl        bool       `json:"ssl"`
 	SslCert    string     `json:"ssl_cert"`

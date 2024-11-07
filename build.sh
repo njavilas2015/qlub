@@ -1,1 +1,2 @@
-docker build -t njavilas/qlub:latest .
+docker build -t njavilas/qlub:server .
+docker push njavilas/qlub:server

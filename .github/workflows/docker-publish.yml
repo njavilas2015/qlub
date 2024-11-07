@@ -21,8 +21,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t njavilas/qlub:latest .
+        docker build -t njavilas/qlub:server .
 
     - name: Push Docker image
       run: |
-        docker push njavilas/qlub:latest
+        docker push njavilas/qlub:server

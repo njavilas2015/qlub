@@ -1,26 +1,28 @@
 [
     {
-        "name": "domain.com",
+        "domain": "onbbu.ar",
         "location": [
             {
+                "alias": "frontend",
+                "ssl": true,
                 "path": "/",
                 "port": "443",
                 "instances": [
-                    "site_docker_1",
-                    "site_server_2"
+                    "site"
                 ]
             },
             {
+                "alias": "backend",
+                "ssl": false,
                 "path": "/api",
                 "port": "8000",
                 "instances": [
-                    "api_docker_1",
-                    "api_server_2"
+                    "qlub"
                 ]
             }
         ],
         "ssl": true,
-        "ssl_cert": "/etc/letsencrypt/fullchain.pem",
-        "ssl_cert_key": "/etc/letsencrypt/privkey.pem"
+        "ssl_cert": "/etc/letsencrypt/live/npm-42/fullchain.pem",
+        "ssl_cert_key": "/etc/letsencrypt/live/npm-42/privkey.pem"
     }
 ]
