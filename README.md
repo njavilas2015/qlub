@@ -23,10 +23,10 @@
 
 Para instalar `qlub`, puedes descargar el binario desde el siguiente enlace:
 
-- [Descargar qlub](https://github.com/njavilas2015/qlub/releases/download/v1.0.2/qlub)
+- [Descargar qlub](https://github.com/njavilas2015/qlub/releases/download/v1.0.3/qlub)
 
 ```bash
-wget https://github.com/njavilas2015/qlub/releases/download/v1.0.2/qlub
+wget https://github.com/njavilas2015/qlub/releases/download/v1.0.3/qlub
 ```
 
 Después de descargar, asegúrate de que el binario sea ejecutable y mueve el archivo a un directorio en tu `PATH`:
@@ -98,6 +98,8 @@ services:
       
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./conf.d/:/etc/nginx/conf.d/
+      
       - /mnt/md0/data/letsencrypt/:/etc/letsencrypt/
 
     depends_on:
@@ -119,6 +121,7 @@ services:
     volumes:
       - ./subdomains.json:/app/subdomains.json
       - ./nginx.conf:/app/nginx.conf
+      - ./conf.d/:/app/conf.d/
 ```
 
 ## Build
